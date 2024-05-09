@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <title>Registrar Tecnico</title>
+</head>
+<body>
+    <div th:insert="~{fragments/general.html :: navar}"></div>
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-6 offset-md-3">
+                <hr/>
+                <div class="alert alert-danger" role="alert" th:if="${msg != null}" th:text="${msg}">
+                    A simple success alert—check it out!
+                </div>
+                <form method="post" th:action="@{'/guardar_tecnico'}" th:object="${technician}">
+                    <input th:field="*{technicianId}" type="hidden"/>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input th:field="*{firstName}" type="text" th:class="${#fields.hasErrors('firstName')?'form-control is-invalid':'form-control'}"/>
+                        <div class="invalid-feedback"
+                             th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                            Mensaje de error de productName
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Apellido</label>
+                        <input th:field="*{lastName}" type="text" th:class="${#fields.hasErrors('lastName')?'form-control is-invalid':'form-control'}"/>
+                        <div class="invalid-feedback"
+                             th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+                            Mensaje de error de productName
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">DNI</label>
+                        <input th:field="*{dni}" type="number" th:class="${#fields.hasErrors('dni')?'form-control is-invalid':'form-control'}"/>
+                        <div class="invalid-feedback"
+                             th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">
+                            Mensaje de error de productName
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Telefono</label>
+                        <input th:field="*{phone}" type="number" th:class="${#fields.hasErrors('phone')?'form-control is-invalid':'form-control'}"/>
+                        <div class="invalid-feedback"
+                             th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">
+                            Mensaje de error de productName
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Edad</label>
+                        <input th:field="*{age}" type="number" th:class="${#fields.hasErrors('age')?'form-control is-invalid':'form-control'}"/>
+                        <div class="invalid-feedback"
+                             th:if="${#fields.hasErrors('age')}" th:errors="*{age}">
+                            Mensaje de error de productName
+                        </div>
+                    </div>
+
+                    <a th:href="@{'/vista_tecnicos'}" class="btn btn-danger">Cancelar</a>
+                    <button type="submit" class="btn btn-primary"
+                            >Actualizar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

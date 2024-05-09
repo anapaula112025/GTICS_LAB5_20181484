@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <title>Vista inicio</title>
+</head>
+<body>
+    <div th:insert="~{fragments/general.html :: navar}"></div>
+    <br>
+    <main>
+        <div class="container px-4 pb-5">
+            <h1 class="pb-2 border-bottom">Lista Tecnicos Registrados</h1>
+            <a class="btn btn-primary mt-4 mb-4" th:href="@{'/nuevo_tecnico'}" >Nuevo Tecnico</a>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>DNI</th>
+                    <th>Telefono</th>
+                    <th>Edad</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tecnico, info : ${listaTecnicos}">
+                    <td th:text="${info.index + 1}"></td>
+                    <td th:text="${tecnico.firstName}"></td>
+                    <td th:text="${tecnico.lastName}"></td>
+                    <td th:text="${tecnico.dni}"></td>
+                    <td th:text="${tecnico.phone}"></td>
+                    <td th:text="${tecnico.age}"></td>
+                    <td><a class="btn btn-primary"
+                           th:href="@{'/editar_tecnico' + '?id=' + ${tecnico.technicianId}}" >Editar</a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>
+</html>
